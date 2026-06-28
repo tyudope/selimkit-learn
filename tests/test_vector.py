@@ -1,16 +1,19 @@
+import pytest
 from selimkit.linalg import Vector
 
+# Initialization
 def test_vector_creation() -> None:
     v = Vector([1.0, 2.0, 3.0])
     assert v.entries == [1.0, 2.0, 3.0]
 
-
+# Representation
 def test_vector_repr() -> None:
     v = Vector([1.0,2.0])
     assert repr(v) == "Vector([1.0, 2.0])"
 
 
 
+# Equality.
 def test_eq_identical_vectors() -> None:
     v1 = Vector([1.0, 2.0])
     v2 = Vector([1.0, 2.0])
@@ -32,3 +35,36 @@ def test_eq_non_vector_returns_false() -> None:
     v2 = [1.0, 2.0]
     assert v1 != v2
 
+
+
+
+# Addition
+def test_add_valid_dimensions() -> None:
+    v1 = Vector([1.0,2.0,3.0])
+    v2 = Vector([4.0,5.0,6.0])
+
+    assert v1 + v2 == Vector([5.0, 7.0, 9.0])
+
+
+def test_add_mismatched_dimensions_raises() -> None:
+    """Vector addition with mismatched dimensions should raise ValueError."""
+    v1 = Vector([1.0,2.0])
+    v2 = Vector([1.0,2.0,3.0])
+
+
+    with pytest.raises(ValueError): 
+        # is a context manager that expects a ValueError to occurs inside the with block
+        # If it does -> Test passes
+        # If no error is raised -> Test fails
+        # If a different error is raised -> Test Fails
+        v1 + v2
+    
+    
+
+def test_add_non_vector_raises() -> None:
+    v1 = Vector([1.0, 2.0])
+    
+    with pytest.raises(TypeError):
+        v1 + 5
+
+    

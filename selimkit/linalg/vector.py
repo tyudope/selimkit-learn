@@ -19,3 +19,24 @@ class Vector:
         return self.entries == other.entries
 
 
+    def __add__(self, other:"Vector") -> "Vector":
+        """Add two vectors and return a new vector with the same dimension.
+        
+        [1,2] + [2,3] = [3, 5]
+
+        Component-wise addition: To add two vectors a and b you independently,
+        add their corresponding elements.
+        
+        Remark: By default, vector addition is not defined for vectors of different
+        dimensions.
+        """
+
+        if not isinstance(other, Vector):
+            return NotImplemented
+        
+        if len(self.entries) != len(other.entries):
+            raise ValueError("For Vector Addition, Dimensions must match.")
+
+        return Vector([a + b for a, b in zip(self.entries, other.entries)])
+    
+
