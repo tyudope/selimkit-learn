@@ -90,3 +90,24 @@ def test_subtract_non_vector_raises() -> None:
 
     with pytest.raises(TypeError):
         v1 - 5
+
+
+# Scalar multiplication
+def test_mul_valid_scalar() -> None:
+    v1 = Vector([1.0,2.0,3.0])
+
+    assert v1 * 2 == Vector([2.0,4.0,6.0])
+def test_rmul_valid_scalar() -> None:
+    v1 = Vector([1.0, 2.0, 3.0])
+    assert 2 * v1 == Vector([2.0,4.0,6.0])
+
+def test_mul_zero_mul() -> None:
+    v1 = Vector([1.0,2.0,3.0])
+    assert v1 * 0 == Vector([0.0,0.0,0.0])
+
+def test_mul_unvalid_scalar_raises() -> None:
+    v1 = Vector([1.0,2.0,3.0])
+
+    with pytest.raises(TypeError):
+        v1 * "selim"
+

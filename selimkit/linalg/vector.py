@@ -45,7 +45,7 @@ class Vector:
 
         [3,2] - [2,1] = [1,1]
 
-        Component-wise subtration: To subtract two vectors a and b you independently,
+        Component-wise subtraction: To subtract two vectors a and b you independently,
         subtract their corresponding elements.
 
         Remark: By default, vector subtraction is not defined for vectors of different 
@@ -61,3 +61,30 @@ class Vector:
         
 
         return Vector([a - b for a,b in zip(self.entries, other.entries)])
+    
+
+    def __mul__(self, scalar) -> "Vector":
+        """
+        Scalar multiplication of the vector. A fundamental linear algebra
+        operatoin where a vector is multiplied by a real number (scalar)
+
+        [6,5,4] x 3 = [18,15,12]
+
+        Component-wise multiplication: To scale vector with scalar x you independently
+        multiply elements with the scalar.
+        
+        """
+
+        if isinstance(scalar,bool) or not isinstance(scalar, (int, float)):
+            return NotImplemented
+        
+
+        return Vector([entry * scalar for entry in self.entries])
+    
+
+    def __rmul__(self, scalar) -> "Vector":
+        """Delegate to the __mul__"""
+        return self.__mul__(scalar)
+        
+
+
