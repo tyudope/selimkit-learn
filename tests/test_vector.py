@@ -67,4 +67,26 @@ def test_add_non_vector_raises() -> None:
     with pytest.raises(TypeError):
         v1 + 5
 
-    
+
+
+# Subtraction
+def test_subtract_valid_dimensions() -> None:
+    v1 = Vector([3.0, 2.0])
+    v2 = Vector([1.0, 1.0])
+
+    assert v1 - v2 == Vector([2.0, 1.0])
+
+
+def test_subtract_non_valid_dimensions_raises() -> None:
+    """Vector subtraction with non-valid dimensions should raise ValueError"""
+    v1 = Vector([2.0,1.0])
+    v2 = Vector([2.0,1.0,3.0])
+
+    with pytest.raises(ValueError):
+        v1 - v2 
+
+def test_subtract_non_vector_raises() -> None:
+    v1 = Vector([1.0, 2.0])
+
+    with pytest.raises(TypeError):
+        v1 - 5

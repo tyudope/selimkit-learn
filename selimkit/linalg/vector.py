@@ -39,4 +39,25 @@ class Vector:
 
         return Vector([a + b for a, b in zip(self.entries, other.entries)])
     
+    def __sub__(self, other:"Vector") -> "Vector":
+        """
+        Subtract two vectors and return a new vector with the same dimension
 
+        [3,2] - [2,1] = [1,1]
+
+        Component-wise subtration: To subtract two vectors a and b you independently,
+        subtract their corresponding elements.
+
+        Remark: By default, vector subtraction is not defined for vectors of different 
+        dimensions.
+        
+        """
+
+        if not isinstance(other, Vector):
+            return NotImplemented
+        
+        if len(self.entries) != len(other.entries):
+            raise ValueError("For Vector subtraction, Dimensions must match.")
+        
+
+        return Vector([a - b for a,b in zip(self.entries, other.entries)])
