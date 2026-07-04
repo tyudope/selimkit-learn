@@ -119,3 +119,10 @@ def test_neg() -> None:
 
     assert v2 == Vector([-1.0, -2.0])
     assert -v2 == v1
+
+
+# Dimension
+def test_dimension() -> None:
+    assert Vector([1.0, 2.0]).dimension() == 2
+    assert Vector([1.0,2.0, 3.0]).dimension() == 3
+    assert Vector([42.0]).dimension() == 1

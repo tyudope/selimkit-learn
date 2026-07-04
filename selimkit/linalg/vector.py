@@ -90,7 +90,10 @@ class Vector:
 
     def __neg__(self) -> "Vector":
         """A new vectgor with the exact same magnitude (length) but the opposite direction."""
-        
+
         return self * -1
 
 
+    def dimension(self) -> int:
+        """Return the number of components in the vector."""
+        return len(self.entries)
