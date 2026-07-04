@@ -85,6 +85,12 @@ class Vector:
     def __rmul__(self, scalar) -> "Vector":
         """Delegate to the __mul__"""
         return self.__mul__(scalar)
+    
+
+
+    def __neg__(self) -> "Vector":
+        """A new vectgor with the exact same magnitude (length) but the opposite direction."""
         
+        return self * -1
 
 
