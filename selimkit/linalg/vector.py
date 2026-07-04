@@ -97,3 +97,8 @@ class Vector:
     def dimension(self) -> int:
         """Return the number of components in the vector."""
         return len(self.entries)
+    
+    @classmethod
+    def zero(cls, n) -> "Vector":
+        """Return zero vector with n dimensions."""
+        return cls([0.0] * n)

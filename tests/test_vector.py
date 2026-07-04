@@ -126,3 +126,8 @@ def test_dimension() -> None:
     assert Vector([1.0, 2.0]).dimension() == 2
     assert Vector([1.0,2.0, 3.0]).dimension() == 3
     assert Vector([42.0]).dimension() == 1
+
+
+# Zero vector
+def test_zero() -> None:
+    assert Vector.zero(3) == Vector([0.0, 0.0, 0.0])
