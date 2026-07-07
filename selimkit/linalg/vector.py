@@ -34,7 +34,7 @@ class Vector:
         if not isinstance(other, Vector):
             return NotImplemented
         
-        if len(self.entries) != len(other.entries):
+        if self.dimension != other.dimension:
             raise ValueError("For Vector Addition, Dimensions must match.")
 
         return Vector([a + b for a, b in zip(self.entries, other.entries)])
@@ -56,7 +56,7 @@ class Vector:
         if not isinstance(other, Vector):
             return NotImplemented
         
-        if len(self.entries) != len(other.entries):
+        if self.dimension != other.dimension:
             raise ValueError("For Vector subtraction, Dimensions must match.")
         
 
@@ -66,7 +66,7 @@ class Vector:
     def __mul__(self, scalar) -> "Vector":
         """
         Scalar multiplication of the vector. A fundamental linear algebra
-        operatoin where a vector is multiplied by a real number (scalar)
+        operation where a vector is multiplied by a real number (scalar)
 
         [6,5,4] x 3 = [18,15,12]
 
@@ -89,16 +89,16 @@ class Vector:
 
 
     def __neg__(self) -> "Vector":
-        """A new vectgor with the exact same magnitude (length) but the opposite direction."""
+        """A new vector with the exact same magnitude (length) but the opposite direction."""
 
         return self * -1
 
-
+    @property
     def dimension(self) -> int:
         """Return the number of components in the vector."""
         return len(self.entries)
     
     @classmethod
-    def zero(cls, n) -> "Vector":
+    def zero(cls, n:int) -> "Vector":
         """Return zero vector with n dimensions."""
         return cls([0.0] * n)

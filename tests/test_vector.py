@@ -105,7 +105,7 @@ def test_mul_zero_mul() -> None:
     v1 = Vector([1.0,2.0,3.0])
     assert v1 * 0 == Vector([0.0,0.0,0.0])
 
-def test_mul_unvalid_scalar_raises() -> None:
+def test_mul_invalid_scalar_raises() -> None:
     v1 = Vector([1.0,2.0,3.0])
 
     with pytest.raises(TypeError):
@@ -123,11 +123,15 @@ def test_neg() -> None:
 
 # Dimension
 def test_dimension() -> None:
-    assert Vector([1.0, 2.0]).dimension() == 2
-    assert Vector([1.0,2.0, 3.0]).dimension() == 3
-    assert Vector([42.0]).dimension() == 1
+    assert Vector([1.0, 2.0]).dimension == 2
+    assert Vector([1.0,2.0, 3.0]).dimension == 3
+    assert Vector([42.0]).dimension == 1
 
 
 # Zero vector
 def test_zero() -> None:
-    assert Vector.zero(3) == Vector([0.0, 0.0, 0.0])
+    assert Vector.zero(3) == Vector([0.0,0.0,0.0])
+    assert Vector.zero(5) == Vector([0.0,0.0,0.0,0.0,0.0])
+
+def test_zero_empty() -> None:
+    assert Vector.zero(0) == Vector([])
