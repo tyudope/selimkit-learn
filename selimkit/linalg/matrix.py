@@ -17,4 +17,17 @@ class Matrix:
         """
 
 
+        if not isinstance(rows, list):
+            raise TypeError(f"Expected list of rows, got {type(rows).__name__}")
         
+
+        if rows and not all (isinstance(row, list) for row in rows):
+            raise TypeError("All rows must be lists")
+        
+        if rows:
+            expected_length = len(rows[0])
+            if not all (len(row) == expected_length for row in rows):
+                raise ValueError("All rows must have the same length")
+            
+        
+        self.entries = rows
